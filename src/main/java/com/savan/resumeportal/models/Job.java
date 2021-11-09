@@ -2,6 +2,9 @@ package com.savan.resumeportal.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -13,16 +16,25 @@ public class Job {
     private String designation;
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean isCurrentJob;
 
-    @Override
-    public String toString() {
-        return "Job{" +
-                "id=" + id +
-                ", company='" + company + '\'' +
-                ", designation='" + designation + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
+    @ElementCollection(targetClass = String.class)
+    private List<String> responsibilities = new ArrayList();
+
+    public List<String> getResponsibilities() {
+        return responsibilities;
+    }
+
+    public void setResponsibilities(List<String> responsibilities) {
+        this.responsibilities = responsibilities;
+    }
+
+    public boolean isCurrentJob() {
+        return isCurrentJob;
+    }
+
+    public void setCurrentJob(boolean currentJob) {
+        isCurrentJob = currentJob;
     }
 
     public int getId() {
@@ -49,9 +61,7 @@ public class Job {
         this.designation = designation;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+    public LocalDate getStartDate() {return startDate;}
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
@@ -65,5 +75,22 @@ public class Job {
         this.endDate = endDate;
     }
 
+    public String getFormattedStartDate(){
+        return startDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+    }
 
+    public String getFormattedEndDate(){
+        return endDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", designation='" + designation + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }
