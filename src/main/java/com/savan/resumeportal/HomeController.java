@@ -1,5 +1,6 @@
 package com.savan.resumeportal;
 
+import com.savan.resumeportal.models.Education;
 import com.savan.resumeportal.models.Job;
 import com.savan.resumeportal.models.MyUserDetails;
 import com.savan.resumeportal.models.UserProfile;
@@ -38,6 +39,9 @@ public class HomeController {
         job1.setStartDate(LocalDate.of(2020, 1, 1));
         //job1.setEndDate(LocalDate.of(2020, 3, 1));
         job1.setCurrentJob(true);
+        job1.getResponsibilities().add("Come up with the theory of relativity");
+        job1.getResponsibilities().add("Advanced Quantum Mechanics");
+        job1.getResponsibilities().add("Blow people's Brains out!");
 
         Job job2 = new Job();
         job2.setCompany("Company 2");
@@ -45,7 +49,9 @@ public class HomeController {
         job2.setId(2);
         job2.setStartDate(LocalDate.of(2019, 5, 1));
         job2.setEndDate(LocalDate.of(2020, 1, 1));
-
+        job2.getResponsibilities().add("Come up with the theory of relativity");
+        job2.getResponsibilities().add("Advanced Quantum Mechanics");
+        job2.getResponsibilities().add("Blow people's Brains out!");
 
         List<Job> jobs = new ArrayList<Job>();
         jobs.add(job1);
@@ -53,6 +59,25 @@ public class HomeController {
         profile1.getJobs().clear();
         profile1.getJobs().add(job1);
         profile1.getJobs().add(job2);
+
+        Education e1 = new Education();
+        e1.setCollege("Awesome College");
+        e1.setQualification("Useless Degree");
+        e1.setSummary("Studied a lot");
+        e1.setStartDate(LocalDate.of(2019, 5, 1));
+        e1.setEndDate(LocalDate.of(2020, 1, 1));
+        userProfileRepository.save(profile1);
+
+        Education e2 = new Education();
+        e2.setCollege("Awesome College");
+        e2.setQualification("Useless Degree");
+        e2.setSummary("Studied a lot");
+        e2.setStartDate(LocalDate.of(2019, 5, 1));
+        e2.setEndDate(LocalDate.of(2020, 1, 1));
+
+        profile1.getEducations().clear();
+        profile1.getEducations().add(e1);
+        profile1.getEducations().add(e2);
 
         userProfileRepository.save(profile1);
 
