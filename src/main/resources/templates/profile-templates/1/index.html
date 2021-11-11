@@ -52,30 +52,12 @@
 						<div class="yui-u first">
 							<h2>Skills</h2>
 						</div>
-						<div class="yui-u">
-
+						<div class="yui-u" th:each="skill:${userProfile.skills}">
 								<div class="talent">
-									<h2>Web Design</h2>
-									<p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
+									<h2 th:text="${skill}">Web Design</h2>
 								</div>
-
 						</div>
 					</div><!--// .yui-gf -->
-
-					<div class="yui-gf">
-						<div class="yui-u first">
-							<h2>Technical</h2>
-						</div>
-						<div class="yui-u">
-							<ul class="talent">
-								<li>XHTML</li>
-								<li>CSS</li>
-								<li class="last">Javascript</li>
-							</ul>
-
-
-						</div>
-					</div><!--// .yui-gf-->
 
 					<div class="yui-gf">
 	
@@ -108,18 +90,11 @@
 						</div>
 					</div><!--// .yui-gf -->
 
-
 				</div><!--// .yui-b -->
 			</div><!--// yui-main -->
 		</div><!--// bd -->
-
-
 	</div><!-- // inner -->
-
-
 </div><!--// doc -->
-
-
 </body>
 </html>
 

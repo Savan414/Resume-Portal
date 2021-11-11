@@ -61,20 +61,25 @@ public class HomeController {
         profile1.getJobs().add(job2);
 
         Education e1 = new Education();
-        e1.setCollege("Awesome College");
-        e1.setQualification("Useless Degree");
-        e1.setSummary("Studied a lot");
-        e1.setStartDate(LocalDate.of(2019, 5, 1));
-        e1.setEndDate(LocalDate.of(2020, 1, 1));
+        e1.setCollege("Federal Polytechnic School, Zurich, Switzerland");
+        e1.setQualification("Federal Teaching Diploma");
+        e1.setSummary("Got diploma for Maths and Physics");
+        e1.setStartDate(LocalDate.of(1896, 9, 1));
+        e1.setEndDate(LocalDate.of(1900, 1, 1));
         userProfileRepository.save(profile1);
 
         Education e2 = new Education();
-        e2.setCollege("Awesome College");
-        e2.setQualification("Useless Degree");
-        e2.setSummary("Studied a lot");
-        e2.setStartDate(LocalDate.of(2019, 5, 1));
-        e2.setEndDate(LocalDate.of(2020, 1, 1));
+        e2.setCollege("University of Zurich, Switzerland");
+        e2.setQualification("Phd");
+        e2.setSummary("Dissertation: A new Determination of Molecular Dimensions");
+        e2.setStartDate(LocalDate.of(1900, 5, 1));
+        e2.setEndDate(LocalDate.of(1905, 1, 1));
 
+        profile1.getSkills().clear();
+        profile1.getSkills().add("Quantum Physics");
+        profile1.getSkills().add("Modern Physics");
+        profile1.getSkills().add("Violin");
+        profile1.getSkills().add("Philosophy");
         profile1.getEducations().clear();
         profile1.getEducations().add(e1);
         profile1.getEducations().add(e2);
