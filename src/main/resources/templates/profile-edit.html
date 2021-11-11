@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 th:text="${userId} + '\'s Profile'">Profile</h1>
+
+    <div class="container">
+        <form action="#" th:action="@{/edit}"  th:object="${userProfile}" method="post">
+            <div class="form-group">
+                <label> First Name</label>
+                <input class="form-control" th:field="*{firstName}" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control" th:field="*{lastName}" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label >Email</label>
+                <input class="form-control" th:field="*{email}" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label >Phone</label>
+                <input class="form-control" th:field="*{phone}" placeholder="Enter Phone">
+            </div>
+            <div class="form-group">
+                <label >Designation</label>
+                <input class="form-control" th:field="*{designation}" placeholder="Enter Designation">
+            </div>
+
+            <h3>Experience</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Designation</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Current Job?</th>
+                    </tr>
+                </thead>
+
+                <tr th:each="job, stat:*{jobs}">
+                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"></td>
+                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
+                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
+                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
+                    <td><input type="checkbox" class="form-control" th:field="*{jobs[__${stat.index}__].currentJob}"></td>
+                </tr>
+
+            </table>
+
+            <h3>Education</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>College</th>
+                    <th>Qualification</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Summary</th>
+                </tr>
+                </thead>
+
+                <tr th:each="education, stat:*{educations}">
+                    <td><input class="form-control" th:field="*{educations[__${stat.index}__].college}"></td>
+                    <td><input class="form-control" th:field="*{educations[__${stat.index}__].qualification}"></td>
+                    <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].startDate}"></td>
+                    <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].endDate}"></td>
+                    <td><input class="form-control" th:field="*{educations[__${stat.index}__].summary}"></td>
+                </tr>
+
+            </table>
+
+            <h3>Skills</h3>
+            <table>
+                <tr th:each="skill, stat:*{skills}">
+                    <td><input class="form-control" th:field="*{skills[__${stat.index}__]}"></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
