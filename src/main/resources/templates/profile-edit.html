@@ -12,6 +12,12 @@
     <div class="container">
         <form action="#" th:action="@{/edit}"  th:object="${userProfile}" method="post">
             <div class="form-group">
+                <label>Select your profile theme</label>
+                <select th:field="*{theme}">
+                    <option th:each="i : ${#numbers.sequence(1, 2)}" th:value="${i}" th:text="${'Theme ' + i}"></option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label> First Name</label>
                 <input class="form-control" th:field="*{firstName}" placeholder="First Name">
             </div>
@@ -31,6 +37,10 @@
                 <label >Designation</label>
                 <input class="form-control" th:field="*{designation}" placeholder="Enter Designation">
             </div>
+            <div class="form-group">
+                <label>Summary</label>
+                <textarea class="form-control" th:field="*{summary}" placeholder="Enter Summary"></textarea>
+            </div>
 
             <h3>Experience</h3>
             <table>
@@ -44,15 +54,17 @@
                     </tr>
                 </thead>
 
-                <tr th:each="job, stat:*{jobs}">
-                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"></td>
-                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
-                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
-                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
-                    <td><input type="checkbox" class="form-control" th:field="*{jobs[__${stat.index}__].currentJob}"></td>
-                </tr>
 
+                    <tr th:each="job, stat:*{jobs}" >
+                        <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"></td>
+                        <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
+                        <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
+                        <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
+                       <!-- <td th:each="responsibility, itemStat:*{responsibilities}"><input class="form-control" th:field="*{responsibilities[__${itemStat.index}__]}"></td>-->
+                        <td><input type="checkbox" class="form-check input" id="flexCheckDefault" th:field="*{jobs[__${stat.index}__].currentJob}"></td>
+                    </tr>
             </table>
+            <p><a href="./edit?add=job">Add job</a></p>
 
             <h3>Education</h3>
             <table>
@@ -73,8 +85,8 @@
                     <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].endDate}"></td>
                     <td><input class="form-control" th:field="*{educations[__${stat.index}__].summary}"></td>
                 </tr>
-
             </table>
+            <p><a href="./edit?add=education">Add Education</a></p>
 
             <h3>Skills</h3>
             <table>
@@ -82,8 +94,10 @@
                     <td><input class="form-control" th:field="*{skills[__${stat.index}__]}"></td>
                 </tr>
             </table>
+            <p><a href="./edit?add=skill">Add Skill</a></p>
 
             <input type="submit" value="Submit">
+
         </form>
     </div>
 </body>

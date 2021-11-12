@@ -32,9 +32,9 @@
 <body>
 
     <div id="page-wrap">
-    
-        <img src="../profile-templates/2/images/einstein.jpg"  alt="Photo of Einstein" id="pic" />
-    
+
+        <!-- <img src="../profile-templates/2/images/einstein.jpg"  alt="Photo of Einstein" id="pic" /> -->
+
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
@@ -61,8 +61,8 @@
         <dl>
             <dd class="clear"></dd>
             
-            <dt th:each="education:${userProfile.educations}">Education</dt>
-            <dd>
+            <dt>Education</dt>
+            <dd th:each="education:${userProfile.educations}">
                 <h2 th:text="${education.college}">Withering Madness University - Planet Vhoorl</h2>
                 <p><strong>Designation:</strong><span th:text="${education.qualification}">Public Relations</span><br />
                    <strong>Summary:</strong><span th:text="${education.summary}">Scale Tending</span></p>
@@ -79,8 +79,9 @@
             
             <dt>Experience</dt>
             <dd th:each="job:${userProfile.jobs}">
-                <h2><span th:text="${job.company}">Doomsday Cult</span> <span  th:text="${job.designation}">Leader/Overlord</span> -
-                    <span th:text="${job.formattedStartDate}">From</span> <span th:text="${job.currentJob} ? 'Present' : ${job.formattedEndDate}"> To</span></h2>
+                <h2><span th:text="${job.company}">Doomsday Cult</span></h2>
+                <h3><span  th:text="${job.designation}">Leader/Overlord</span></h3>
+                <h4><span th:text="${job.formattedStartDate}">From</span> <span th:text="${job.currentJob} ? 'Present' : ${job.formattedEndDate}">To</span></h4>
                 <ul th:each="responsibility:${job.responsibilities}">
                     <li th:text="${responsibility}">Inspired and won highest peasant death competition among servants</li>
                 </ul>
