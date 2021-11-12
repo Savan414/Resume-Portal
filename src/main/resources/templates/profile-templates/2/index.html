@@ -39,8 +39,11 @@
         
             <!-- Microformats! -->
         
-            <h1 class="fn"><span th:text="${userProfile.firstName}">Albert</span> <span th:text="${userProfile.lastName}">Einstein</span></h1>
-        
+            <h1 class="fn">
+                <span th:text="${userProfile.firstName}">Albert</span>
+                <span th:text="${userProfile.lastName}">Einstein</span>
+            </h1>
+
             <p>
                 Cell: <span class="tel" th:text="${userProfile.phone}">555-666-7777</span><br />
                 Email: <a class="email" th:text="${userProfile.email}">greatoldone@lovecraft.com</a>
@@ -90,7 +93,9 @@
             <dd class="clear"></dd>
 
         </dl>
-        
+
+        <h2 align="right"><a th:if="${currentUsersProfile}" href="/edit">Edit</a></h2>
+
         <div class="clear"></div>
     
     </div>
